@@ -3,3 +3,39 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.main {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.header__title {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgba(255, 184, 0, 0.77);
+}
+
+.add {
+  display: flex;
+}
+
+.add__text {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.add__checkbox {
+  margin-top: 20px;
+  transform: scale(2);
+  margin-right:30px;
+  margin-left: 20px;
+}
+
+.add__btn {
+  margin-left: 70px;
+  margin-right: 20px;
+  font-size: 20px;
+}
