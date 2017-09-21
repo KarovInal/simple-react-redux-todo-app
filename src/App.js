@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
+import Add from './components/Add';
 import List from './components/List';
 import EventEmitter from './EventEmitter';
 
@@ -40,7 +40,7 @@ class App extends Component {
     render () {
         return (
             <div className='container'>
-                <Header />
+                <Add />
                 <List data={this.state.data}/>
             </div>
         )

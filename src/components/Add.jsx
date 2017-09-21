@@ -36,11 +36,14 @@ class Add extends Component {
         }
     }
 
+    title = () => <h1 className='header__title'>TODO-REACT</h1>;
+
     render () {
         let empty = this.state.isEmpty;
-        
+
         return (
             <div className='add'>
+                <div className="add-header">{this.title()}</div>
                 <input 
                     type="checkbox" 
                     className='checkbox' 

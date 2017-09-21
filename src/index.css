@@ -17,6 +17,15 @@ body {
   background-color: rgba(255, 184, 0, 0.77);
 }
 
+.add {
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.add-header {
+  width: 100%;
+}
+
 .add,
 .list__item {
   display: flex;
