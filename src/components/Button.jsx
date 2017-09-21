@@ -6,7 +6,7 @@ export default function Button ({ className, type, onClick, disabled, value }) {
             className={className}
             type={type} 
             onClick={onClick}
-            disabled={!disabled ? disabled : !disabled}
+            disabled={disabled ? disabled : false}
         >{value}
         </button>
     )

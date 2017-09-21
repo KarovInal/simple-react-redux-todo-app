@@ -12,10 +12,13 @@ class App extends Component {
         super();
         this._unsubscribe = null;
         this._unsubscribeDelete = null;
+        this._unsubscribeUpdate = null;
 
         this.state = {
-            data: []
+            data: [],
+            mainIsChecked: false
         }
+        
     }
 
     componentDidMount = () => {
@@ -29,19 +32,39 @@ class App extends Component {
             oldData.splice(id, 1);
             this.setState({ data: oldData })
         });
+
+        this._unsubscribeUpdate = window.ee.subscribe('update', ({ id, innerItem }) => {
+            let oldData = [...this.state.data];
+            oldData.splice(id, 1, innerItem);
+            this.setState({ data: oldData })
+        });
     }
 
     componentwillUnmount = () => {
         this._unsubscribe();
         this._unsubscribeDelete();
+        this._unsubscribeUpdate();
     }
 
 
+    checkingOnChangeHandler = () => {
+        let stateCheck = this.state.mainIsChecked;
+        this.setState({ mainIsChecked: !this.state.mainIsChecked });
+
+        window.ee.emit('allChecked', stateCheck)
+    }
+
+    
     render () {
         return (
             <div className='container'>
-                <Add />
-                <List data={this.state.data}/>
+                <Add 
+                    onChange={this.checkingOnChangeHandler} 
+                    checked={this.state.mainIsChecked} />
+                <List 
+                    data={this.state.data} 
+                    isChecked={this.state.mainIsChecked} 
+                />
             </div>
         )
     }

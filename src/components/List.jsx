@@ -14,6 +14,7 @@ class List extends Component {
                     key={i} 
                     className="list__item" 
                     index={i} 
+                    check={this.props.isChecked}
                 />
             )
         })

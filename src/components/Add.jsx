@@ -13,6 +13,7 @@ class Add extends Component {
 
     componentDidMount() {
         this.textInput.focus();
+        this.setState({ isEmpty: true }); 
     }
 
     addClickHandler = (e) => {
@@ -30,7 +31,7 @@ class Add extends Component {
 
     btnOnChangeHandler = ({ target }) => {
         if (target.value.length < 0) {
-            this.setState({ isEmpty: false }); 
+            this.setState({ isEmpty: true }); 
         } else {
             this.setState({ isEmpty: false }); 
         }
@@ -47,6 +48,8 @@ class Add extends Component {
                 <input 
                     type="checkbox" 
                     className='checkbox' 
+                    checked={this.props.checked}
+                    onChange={this.props.onChange}
                 />
 
                 <input 
