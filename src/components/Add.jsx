@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import EventEmitter from '../EventEmitter';
 import Button from './Button';
 
-
-window.ee = new EventEmitter();
 
 class Add extends Component {
     constructor() {

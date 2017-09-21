@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Button ({ className, type, onClick, disabled, value }) {
+export default function Button ({ className, type, onClick, disabled, value }) {
     return (
         <button 
             className={className}
@@ -11,6 +11,3 @@ function Button ({ className, type, onClick, disabled, value }) {
         </button>
     )
 }
-
-
-export default Button;

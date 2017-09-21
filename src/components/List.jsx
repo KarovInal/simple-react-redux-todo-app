@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Input from './Input';
-import EventEmitter from '../EventEmitter';
 
-
-window.ee = new EventEmitter();
 
 class List extends Component {
 
