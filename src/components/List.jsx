@@ -7,9 +7,6 @@ window.ee = new EventEmitter();
 
 class List extends Component {
 
-
-
-
     render () {
         const newData = this.props.data;
 
