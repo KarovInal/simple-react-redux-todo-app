@@ -17,17 +17,23 @@ body {
   background-color: rgba(255, 184, 0, 0.77);
 }
 
-.add {
+.add,
+.list__item {
   display: flex;
 }
 
-.add__text {
+.header {
+  margin-bottom: 30px;
+}
+
+.add__text,
+.view-text {
   flex-grow: 1;
   padding: 10px;
   font-size: 20px;
 }
 
-.add__checkbox {
+.checkbox {
   margin-top: 20px;
   transform: scale(2);
   margin-right:30px;
@@ -39,3 +45,32 @@ body {
   margin-right: 20px;
   font-size: 20px;
 }
+
+.btn {
+  font-size: 20px;
+  background-color: transparent;
+}
+
+.btn_delete {
+  margin-left: 50px;
+  margin-right: 30px;
+}
+
+.btn_change {
+  margin-right: 30px;
+}
+
+.view-text {
+  border: none;  
+  background-color: transparent;
+}
+
+.list__item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.focus {
+  border: 1px solid yellow;
+}
+
+
