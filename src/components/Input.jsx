@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Button from './Button';
+import Checkbox from './Checkbox';
 
 
-class Input extends Component {
+export default class Input extends Component {
     constructor(props) {
         super(props);
 
@@ -46,31 +47,26 @@ class Input extends Component {
     }
 
 
-    removeOnClickHandler = ( e) => {
-        const index = this.props.index;
-        window.ee.emit('delete', index)
-    }
-
-
     render () {
-        let text = this.props.value;
-        let disabled = this.state.isDisabled;
-        let checked = this.state.isChecked;
+        let {check, index, clickRemove, value} = this.props;
+        let {isChecked, isDisabled}  = this.state;
+
         
         return (
             <div className="list__item">
-                <input 
-                    className="checkbox"
+
+                <Checkbox 
                     type="checkbox" 
-                    checked={checked}
+                    className='checkbox' 
+                    checked={isChecked}
                     onChange={this.checkingOnChangeHandler}
                 />
 
                 <input 
-                    className={"view-text " + (checked || this.props.check ? "ischeck": "")}
+                    className={"view-text " + (isChecked || check ? "ischeck": "")}
                     type="text" 
-                    disabled={disabled}
-                    defaultValue={text}
+                    disabled={isDisabled}
+                    defaultValue={value}
                     ref={input => this.text = input}
                     onChange={this.btnOnChangeHandler}
                     onBlur={this.disableOnClickHandler}
@@ -88,7 +84,7 @@ class Input extends Component {
                     className="btn  btn_delete"
                     type="button"
                     disabled={false}
-                    onClick={this.removeOnClickHandler}
+                    onClick={clickRemove.bind(this, index)}
                     value="Удалить"
                 />
             </div>
@@ -96,4 +92,3 @@ class Input extends Component {
     }
 }
 
-export default Input;

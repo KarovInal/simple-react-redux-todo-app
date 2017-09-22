@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
 import Button from './Button';
+import Checkbox from './Checkbox';
 
 
-class Add extends Component {
+export default class Add extends Component {
     constructor() {
         super();
         
         this.state = {
             isEmpty: false
         }
+
+        this.handleEnter = this.handleEnter.bind(this)
     }
 
     componentDidMount() {
         this.textInput.focus();
         this.setState({ isEmpty: true }); 
+
+        document.addEventListener('keydown', this.handleEnter);
     }
 
-    addClickHandler = (e) => {
-        e.preventDefault(); 
-        let textValue = this.textInput.value;
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleEnter)
+    }
 
-        const item = { textValue };
+    handleEnter(e) {
+        if(e.key === 'Enter') {
+            this.addClickHandler(e);
+        }
+    }
+
+    randomId() {
+        return Math.random().toString(36).slice(2);
+    }
+      
+
+    addClickHandler = (e) => {
+        e.preventDefault();
+        let textValue = this.textInput.value;
+        let id = this.randomId();
+
+        const item = { 
+            id,
+            textValue 
+        };
 
         window.ee.emit('add.item', item);
 
@@ -45,7 +69,8 @@ class Add extends Component {
         return (
             <div className='add'>
                 <div className="add-header">{this.title()}</div>
-                <input 
+
+                <Checkbox 
                     type="checkbox" 
                     className='checkbox' 
                     checked={this.props.checked}
@@ -71,5 +96,3 @@ class Add extends Component {
         )
     }
 }
-
-export default Add;

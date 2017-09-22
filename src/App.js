@@ -3,33 +3,33 @@ import Add from './components/Add';
 import List from './components/List';
 import EventEmitter from './EventEmitter';
 
-
 window.ee = new EventEmitter();
-
 
 class App extends Component {
     constructor () {
         super();
-        this._unsubscribe = null;
-        this._unsubscribeDelete = null;
-        this._unsubscribeUpdate = null;
 
         this.state = {
             data: [],
             mainIsChecked: false
         }
+
+        this.removeOnClickHandler = this.removeOnClickHandler.bind(this)
+        this.checkingOnChangeHandler = this.checkingOnChangeHandler.bind(this)
         
     }
 
-    componentDidMount = () => {
-        this._unsubscribe = window.ee.subscribe('add.item', (item) => {
-            let oldData = [...this.state.data, item];
-            this.setState({ data: oldData })
+    removeOnClickHandler(index, e) {
+        this.setState(({ data }) => {
+            data.splice(index, 1);
+            return { data };
         });
+    }
 
-        this._unsubscribeDelete = window.ee.subscribe('delete', (id) => {
-            let oldData = [...this.state.data];
-            oldData.splice(id, 1);
+
+    componentDidMount() {
+        this._unsubscribe = window.ee.subscribe('add.item', (item) => {
+            let oldData = this.state.data.concat(item);
             this.setState({ data: oldData })
         });
 
@@ -40,30 +40,34 @@ class App extends Component {
         });
     }
 
-    componentwillUnmount = () => {
+    componentwillUnmount() {
         this._unsubscribe();
-        this._unsubscribeDelete();
         this._unsubscribeUpdate();
     }
 
 
-    checkingOnChangeHandler = () => {
-        let stateCheck = this.state.mainIsChecked;
-        this.setState({ mainIsChecked: !this.state.mainIsChecked });
+    checkingOnChangeHandler() {
+        let {mainIsChecked} = this.state;
+        this.setState({ mainIsChecked: !mainIsChecked });
 
-        window.ee.emit('allChecked', stateCheck)
+        window.ee.emit('allChecked', mainIsChecked)
     }
 
     
     render () {
+        let {mainIsChecked, data} = this.state;
+
         return (
             <div className='container'>
                 <Add 
                     onChange={this.checkingOnChangeHandler} 
-                    checked={this.state.mainIsChecked} />
+                    checked={mainIsChecked} 
+                />
+                
                 <List 
-                    data={this.state.data} 
-                    isChecked={this.state.mainIsChecked} 
+                    data={data} 
+                    isChecked={mainIsChecked} 
+                    remove={this.removeOnClickHandler}
                 />
             </div>
         )
