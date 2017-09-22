@@ -5,7 +5,7 @@ body {
 }
 
 .main {
-  width: 800px;
+  width: 600px;
   margin: 0 auto;
 }
 
@@ -20,6 +20,8 @@ body {
 .add {
   flex-wrap: wrap;
   margin-bottom: 30px;
+  border-bottom: 2px solid rgb(247, 214, 3);
+  padding-bottom: 30px;
 }
 
 .add-header {
@@ -35,6 +37,10 @@ body {
   margin-bottom: 30px;
 }
 
+.add__text {
+  border: 2px solid rgba(255, 161, 0, 0.46)
+}
+
 .add__text,
 .view-text {
   flex-grow: 1;
@@ -42,22 +48,35 @@ body {
   font-size: 20px;
 }
 
+.view-text:focus,
+.add__text:focus {
+  outline: 2px solid rgba(255, 184, 0, 0.6);
+}
+
 .checkbox {
   margin-top: 20px;
   transform: scale(2);
   margin-right:30px;
   margin-left: 20px;
+  cursor: pointer;
+}
+
+.add__btn,
+.btn {
+  font-size: 18px;
+  background-color: rgba(255, 184, 0, 0.6);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px
+}
+
+.btn:hover {
+  background-color: #FAAC2E;
 }
 
 .add__btn {
   margin-left: 70px;
   margin-right: 20px;
-  font-size: 20px;
-}
-
-.btn {
-  font-size: 20px;
-  background-color: transparent;
 }
 
 .btn_change {
@@ -75,7 +94,7 @@ body {
 }
 
 .list__item:not(:last-child) {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .focus {

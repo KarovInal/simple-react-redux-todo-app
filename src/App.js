@@ -2,21 +2,32 @@ import React, { Component } from 'react';
 import Add from './components/Add';
 import List from './components/List';
 import EventEmitter from './EventEmitter';
+import PropTypes from 'prop-types';
 
 window.ee = new EventEmitter();
 
-class App extends Component {
+export default class App extends Component {
     constructor () {
         super();
 
         this.state = {
             data: [],
             mainIsChecked: false
+            // idDisabled: true
         }
 
         this.removeOnClickHandler = this.removeOnClickHandler.bind(this)
         this.checkingOnChangeHandler = this.checkingOnChangeHandler.bind(this)
+        // this.disabledOnchangeHandler = this.disabledOnchangeHandler.bind(this)
         
+    }
+
+    disabledOnchangeHandler() {
+        if (this.state.data.length > 0) {
+            this.setState({ idDisabled: true});
+        } else {
+            this.setState({ idDisabled: false});
+        }
     }
 
     removeOnClickHandler(index, e) {
@@ -55,13 +66,14 @@ class App extends Component {
 
     
     render () {
-        let {mainIsChecked, data} = this.state;
+        let {mainIsChecked, data, idDisabled} = this.state;
 
         return (
             <div className='container'>
                 <Add 
                     onChange={this.checkingOnChangeHandler} 
                     checked={mainIsChecked} 
+                    disable={idDisabled}
                 />
                 
                 <List 
@@ -74,4 +86,6 @@ class App extends Component {
     }
 }
 
-export default App;
+App.PropTypes = {
+    data: PropTypes.array.isRequired
+}

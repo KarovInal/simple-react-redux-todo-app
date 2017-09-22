@@ -64,7 +64,7 @@ export default class Add extends Component {
     }
 
     title() {
-        return <h1 className='header__title'>TODO-REACT</h1>;
+        return <h1 className='header__title'>todo-REACT</h1>;
     }
 
     render () {
@@ -79,6 +79,7 @@ export default class Add extends Component {
                     className='checkbox' 
                     checked={this.props.checked}
                     onChange={this.props.onChange}
+                    disabled={this.props.disable}
                 />
 
                 <input 
