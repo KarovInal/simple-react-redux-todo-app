@@ -11,6 +11,10 @@ export default class Input extends Component {
             isDisabled: true,
             isChecked: false
         }
+
+        this.changeOnClickHandler = this.changeOnClickHandler.bind(this);
+        this.checkingOnChangeHandler = this.checkingOnChangeHandler.bind(this);
+        this.disableOnClickHandler = this.disableOnClickHandler.bind(this);
     }
 
 
@@ -21,17 +25,17 @@ export default class Input extends Component {
     }
 
 
-    changeOnClickHandler = () => {
+    changeOnClickHandler() {
         this.text.focus();  
         this.setState({ isDisabled: false })
     }
 
-    checkingOnChangeHandler = () => {
+    checkingOnChangeHandler() {
         this.setState({ isChecked: !this.state.isChecked });
     }
 
 
-    disableOnClickHandler = () => {
+    disableOnClickHandler() {
         const index = this.props.index;
         const textValue = this.text.value;
 

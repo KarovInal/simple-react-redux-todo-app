@@ -12,6 +12,8 @@ export default class Add extends Component {
         }
 
         this.handleEnter = this.handleEnter.bind(this)
+        this.btnOnChangeHandler = this.btnOnChangeHandler.bind(this)
+        this.addClickHandler = this.addClickHandler.bind(this)
     }
 
     componentDidMount() {
@@ -36,7 +38,7 @@ export default class Add extends Component {
     }
       
 
-    addClickHandler = (e) => {
+    addClickHandler(e) {
         e.preventDefault();
         let textValue = this.textInput.value;
         let id = this.randomId();
@@ -53,7 +55,7 @@ export default class Add extends Component {
         this.textInput.focus();
     }
 
-    btnOnChangeHandler = ({ target }) => {
+    btnOnChangeHandler({ target }) {
         if (target.value.length < 0) {
             this.setState({ isEmpty: true }); 
         } else {
@@ -61,7 +63,9 @@ export default class Add extends Component {
         }
     }
 
-    title = () => <h1 className='header__title'>TODO-REACT</h1>;
+    title() {
+        return <h1 className='header__title'>TODO-REACT</h1>;
+    }
 
     render () {
         let empty = this.state.isEmpty;
