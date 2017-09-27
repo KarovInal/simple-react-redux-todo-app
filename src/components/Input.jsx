@@ -18,11 +18,11 @@ export default class Input extends Component {
     componentDIdMount() {
         this.textInput.focus();
 
-        document.addEventListener('keypress', this.onkeypressHandler);
+        document.addEventListener('keydown', this.onkeypressHandler);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keypress', this.onkeypressHandler)
+        document.removeEventListener('keydown', this.onkeypressHandler)
     }
 
 
