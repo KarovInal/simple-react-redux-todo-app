@@ -24,23 +24,23 @@ export default class Input extends Component {
     // }
 
 
-    // disableOnClickHandler() {
+    // onChangeHandler = () => {
     //     const index = this.props.index;
     //     const textValue = this.text.value;
 
-    //     const item = {
+    //     return {
     //         index,
-    //         innerItem: {
+    //         item: {
+    //             id: Date.now().tostring(),
     //             textValue
     //         }
     //     }
 
-    //     this.setState({ isDisabled: true })
-    //     window.ee.emit('update', item)
     // }
 
 
     render () {
+        const {index, value} = this.props;
 
         
         return (
@@ -55,8 +55,17 @@ export default class Input extends Component {
                     className="view-text"
                     type="text" 
                     ref={input => this.text = input}
+                    defaultValue={value}
+                    onBlur={
+                        this.props.updateItems.bind(null, {
+                                index,
+                                item: {
+                                    id: Date.now().toString(),
+                                    textValue: value
+                                }
+                            })}
                 />
-
+ 
                 <button 
                     className="btn  btn_change"
                     type="button" 
@@ -66,6 +75,7 @@ export default class Input extends Component {
                 <button 
                     className="btn  btn_delete"
                     type="button"
+                    onClick={this.props.deleteItems.bind(null, index)}
                 > Удалить
                 </button>
             </div>

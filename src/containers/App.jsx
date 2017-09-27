@@ -11,12 +11,16 @@ import List from '../components/List';
 class App extends Component {
     
     render () {
-        const { addItemToList } = this.props.AddAction;
-        // const { items } = this.props;
+        const { addItemToList, deleteItemToList, updateItemToList } = this.props.AddAction;
 
         return (
             <div className='container'>
-                <AddElem addItemToList={addItemToList} dataItems={this.props.items} />
+                <AddElem addItemToList={addItemToList} />
+                <List 
+                    dataItems={this.props.items}  
+                    deleteItemToList={deleteItemToList} 
+                    updateItemToList={updateItemToList}
+                />
             </div>
         );
     }
