@@ -69,7 +69,7 @@ export default class Input extends Component {
                     ref={input => this.text = input} 
                     defaultValue={this.props.value}
                     onBlur={
-                        this.props.updateItems.bind(this, {
+                        this.props.updateItems.bind(null, {
                             index: this.props.index,
                             item: {
                                 id: Date.now().toString(),
