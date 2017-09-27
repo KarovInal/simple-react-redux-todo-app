@@ -5,6 +5,14 @@ import React, { Component } from 'react';
 
 export default class Input extends Component {
 
+    constructor() {
+        super();
+
+        this.state = {
+            textValue: ''
+        }
+    }
+
 
 
     // componentDidMount = () => {
@@ -24,27 +32,29 @@ export default class Input extends Component {
     // }
 
 
-    onChangeHandler = () => {
-        const index = this.props.index;
-        const textValue = this.text.value;
+    // onChangeHandler = () => {
+    //     const index = this.props.index;
+    //     const textValue = this.text.value;
 
-        return {
-            index,
-            item: {
-                id: Date.now().toString(),
-                textValue
-            }
-        }
+    //     const item = {
+    //         index,
+    //         item: {
+    //             id: Date.now().toString(),
+    //             textValue
+    //         }
+    //     }
 
-    }
+    //     return item;
+
+    // }
+
+    // onChangeHandler = ({ target }) => {
+    //     this.setState({ textValue:  });
+    // }
 
 
     render () {
-        // const {index, value} = this.props;
-        // const _this = this;
-        // const textValue = this.text.value;
 
-        
         return (
             <div className="list__item">
 
@@ -56,10 +66,16 @@ export default class Input extends Component {
                 <input 
                     className="view-text"
                     type="text" 
-                    ref={input => this.text = input}
+                    ref={input => this.text = input} 
                     defaultValue={this.props.value}
                     onBlur={
-                        this.props.updateItems.bind(null, this.onChangeHandler())}
+                        this.props.updateItems.bind(this, {
+                            index: this.props.index,
+                            item: {
+                                id: Date.now().toString(),
+                                textValue: this.text.value
+                            }
+                        })}
                 />
  
                 <button 
