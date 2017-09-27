@@ -15,14 +15,26 @@ export default class Input extends Component {
     }
 
 
-    componentDIdMount = () => {
+    componentDIdMount() {
         this.textInput.focus();
+
+        document.addEventListener('keypress', this.onkeypressHandler);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keypress', this.onkeypressHandler)
     }
 
 
     onChangeDisabledHandler = () => {
         this.textInput.focus();
         this.setState({ isDisabled: !this.state.isDisabled });
+    }
+
+    onkeypressHandler = (e) => {
+        if (e.key === 'Enter') {
+            this.onChangeHandler();
+        }
     }
 
 
