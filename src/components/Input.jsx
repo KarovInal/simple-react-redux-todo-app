@@ -9,85 +9,85 @@ export default class Input extends Component {
         super();
 
         this.state = {
-            textValue: ''
+            isLocalChecked: false,
+            isDisabled: true
         }
     }
 
 
-
-    // componentDidMount = () => {
-    //     this._unsubscribe = window.ee.subscribe('allChecked', (state) => {
-    //         this.setState({ isChecked: !state })
-    //     });
-    // }
+    componentDIdMount = () => {
+        this.textInput.focus();
+    }
 
 
-    // changeOnClickHandler() {
-    //     this.text.focus();  
-    //     this.setState({ isDisabled: false })
-    // }
-
-    // checkingOnChangeHandler() {
-    //     this.setState({ isChecked: !this.state.isChecked });
-    // }
+    onChangeDisabledHandler = () => {
+        this.textInput.focus();
+        this.setState({ isDisabled: !this.state.isDisabled });
+    }
 
 
-    // onChangeHandler = () => {
-    //     const index = this.props.index;
-    //     const textValue = this.text.value;
+    onCheckedHandler = () => {
+        this.setState({ isLocalChecked: !this.state.isLocalChecked });
+    }
 
-    //     const item = {
-    //         index,
-    //         item: {
-    //             id: Date.now().toString(),
-    //             textValue
-    //         }
-    //     }
 
-    //     return item;
+    onChangeHandler = () => {
+        const index = this.props.index;
+        const text = this.textInput.value;
 
-    // }
+        const item = {
+            index,
+            item: {
+                id: Date.now().toString(),
+                textValue: text
+            }
+        }
 
-    // onChangeHandler = ({ target }) => {
-    //     this.setState({ textValue:  });
-    // }
+        return item;
+    }
+
+    update = () => {
+        this.props.updateItems(this.onChangeHandler());
+    }
+
+    delete = () => {
+        this.props.deleteItems(this.props.index);
+    }
 
 
     render () {
+        const { value } = this.props;
+        const { isLocalChecked, isDisabled } = this.state;
 
         return (
             <div className="list__item">
 
                 <input
                     type="checkbox" 
-                    className='checkbox' 
+                    className="checkbox"
+                    onChange={this.onCheckedHandler}
                 />
 
                 <input 
-                    className="view-text"
+                    className={"view-text " + (isLocalChecked ? "ischeck": '')}
                     type="text" 
-                    ref={input => this.text = input} 
-                    defaultValue={this.props.value}
-                    onBlur={
-                        this.props.updateItems.bind(null, {
-                            index: this.props.index,
-                            item: {
-                                id: Date.now().toString(),
-                                textValue: this.text.value
-                            }
-                        })}
+                    ref={input => this.textInput = input} 
+                    defaultValue={value}
+                    onBlur={this.update}
+                    disabled={isDisabled}
                 />
  
                 <button 
                     className="btn  btn_change"
                     type="button" 
+                    onClick={this.onChangeDisabledHandler}
                 > Изменить
                 </button> 
 
                 <button 
                     className="btn  btn_delete"
                     type="button"
-                    onClick={this.props.deleteItems.bind(null, this.props.index)}
+                    onClick={this.delete}
                 > Удалить
                 </button>
             </div>

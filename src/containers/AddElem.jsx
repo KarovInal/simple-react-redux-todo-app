@@ -12,8 +12,12 @@ export default class AddElem extends Component {
 
         this.props.addItemToList(item);
         this.textInput.value = '';
+    }
 
-        console.log(this.props.dataItems)
+    onkeyupHandler = (e) => {
+        if (e.key === 'Enter') {
+            this.addClickHandler();
+        }
     }
 
     title = () => {
@@ -27,9 +31,8 @@ export default class AddElem extends Component {
                 
                 <input 
                     type='checkbox' 
-                    className=''
+                    className='checkbox'
                 />
-
 
                 <input 
                     type="text" 
