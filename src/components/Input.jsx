@@ -24,23 +24,25 @@ export default class Input extends Component {
     // }
 
 
-    // onChangeHandler = () => {
-    //     const index = this.props.index;
-    //     const textValue = this.text.value;
+    onChangeHandler = () => {
+        const index = this.props.index;
+        const textValue = this.text.value;
 
-    //     return {
-    //         index,
-    //         item: {
-    //             id: Date.now().tostring(),
-    //             textValue
-    //         }
-    //     }
+        return {
+            index,
+            item: {
+                id: Date.now().toString(),
+                textValue
+            }
+        }
 
-    // }
+    }
 
 
     render () {
-        const {index, value} = this.props;
+        // const {index, value} = this.props;
+        // const _this = this;
+        // const textValue = this.text.value;
 
         
         return (
@@ -55,15 +57,9 @@ export default class Input extends Component {
                     className="view-text"
                     type="text" 
                     ref={input => this.text = input}
-                    defaultValue={value}
+                    defaultValue={this.props.value}
                     onBlur={
-                        this.props.updateItems.bind(null, {
-                                index,
-                                item: {
-                                    id: Date.now().toString(),
-                                    textValue: value
-                                }
-                            })}
+                        this.props.updateItems.bind(null, this.onChangeHandler())}
                 />
  
                 <button 
@@ -75,7 +71,7 @@ export default class Input extends Component {
                 <button 
                     className="btn  btn_delete"
                     type="button"
-                    onClick={this.props.deleteItems.bind(null, index)}
+                    onClick={this.props.deleteItems.bind(null, this.props.index)}
                 > Удалить
                 </button>
             </div>
