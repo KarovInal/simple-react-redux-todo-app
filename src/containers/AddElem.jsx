@@ -7,12 +7,13 @@ export default class AddElem extends Component {
 
         const item = {
             id: Date.now().toString(),
-            textValue
+            textValue   
         }
 
         this.props.addItemToList(item);
         this.textInput.value = '';
-        
+
+        console.log(this.props.dataItems)
     }
 
     title = () => {

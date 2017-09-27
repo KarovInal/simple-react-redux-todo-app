@@ -1,25 +1,27 @@
-// import React from 'react';
-// import Input from './Input';
+import React from 'react';
+import Input from './Input';
  
 
-// export default function List({ remove, isChecked, data }) {
+export default function List(props) {
+    // let template;
+    // const data = this.props.dataItems;
 
-//     const template = data.map((item, i) => {
-//         return (
-//             <Input 
-//                 value={item.textValue} 
-//                 key={item.id} 
-//                 className="list__item" 
-//                 index={i} 
-//                 check={isChecked}
-//                 clickRemove={remove}
-//             />
-//         )
-//     })
+    // if (this.props.dataItem) {
+        let template = this.props.dataItem.map((item, i) => {
+            return (
+                <Input 
+                    value={item.textValue} 
+                    key={item.id} 
+                    className="list__item" 
+                    index={i} 
+                />
+            )
+        })
+    // }
 
-//     return (
-//         <div className="list">
-//             {template}
-//         </div>
-//     )
-// }
+    return (
+        <div className="list">
+            {template}
+        </div>
+    )
+}
