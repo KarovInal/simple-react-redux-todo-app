@@ -1,18 +1,18 @@
 import React from 'react';
-import Input from './Input';
- 
+import ListItem from './ListItem';
 
-export default function List({ dataItems, deleteItemToList, updateItemToList }) {
+export default function List({ dataItems, deleteItemToList, updateItemToList, isChecked }) {
 
     let template = dataItems.map((item, i) => {
         return (
-            <Input 
+            <ListItem 
                 value={item.textValue} 
                 key={item.id} 
                 className="list__item" 
                 index={i} 
                 deleteItems={deleteItemToList}
                 updateItems={updateItemToList}
+                parentIsChecked={isChecked}
             />
         )
     })

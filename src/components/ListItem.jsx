@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-// import Button from './Button';
-// import Checkbox from './Checkbox';
 
 
-export default class Input extends Component {
+export default class ListItem extends Component {
 
     constructor() {
         super();
@@ -15,26 +13,9 @@ export default class Input extends Component {
     }
 
 
-    componentDIdMount() {
-        this.textInput.focus();
-
-        document.addEventListener('keydown', this.onkeypressHandler);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener('keydown', this.onkeypressHandler)
-    }
-
-
     onChangeDisabledHandler = () => {
         this.textInput.focus();
         this.setState({ isDisabled: !this.state.isDisabled });
-    }
-
-    onkeypressHandler = (e) => {
-        if (e.key === 'Enter') {
-            this.onChangeHandler();
-        }
     }
 
 
@@ -68,7 +49,7 @@ export default class Input extends Component {
 
 
     render () {
-        const { value } = this.props;
+        const { value, parentIsChecked } = this.props;
         const { isLocalChecked, isDisabled } = this.state;
 
         return (
@@ -78,10 +59,11 @@ export default class Input extends Component {
                     type="checkbox" 
                     className="checkbox"
                     onChange={this.onCheckedHandler}
+                    checked={parentIsChecked.isChecked}
                 />
 
                 <input 
-                    className={"view-text " + (isLocalChecked ? "ischeck": '')}
+                    className={"view-text " + (isLocalChecked || parentIsChecked.isChecked ? "ischeck": '')}
                     type="text" 
                     ref={input => this.textInput = input} 
                     defaultValue={value}
